@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg bg-dark-subtle">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Books", books_path, class: "nav-link active" %>
+        </li>
+        <% if current_user&.admin? %>
+          <li class="nav-item">
+            <%= link_to "Report", books_path, class: "nav-link active" %>
+          </li>
+        <% end %>      
+      </ul>
+      <% if user_signed_in? %>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%=  current_user.full_name %>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-sm-start">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
