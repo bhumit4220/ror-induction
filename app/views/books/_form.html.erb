@@ -1,0 +1,53 @@
+<%= form_with(model: book, local: true) do |f| %>
+  <div class="row gy-3 overflow-hidden">
+    <% if book.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+        <ul>
+          <% book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <%= f.text_field :name, required: true, class: "form-control" %>
+        <%= f.label :name, class: "form-label" %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <%= f.text_field :author_name, required: true, class: "form-control" %>
+        <%= f.label :author_name, class: "form-label" %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <%= f.text_field :description, class: "form-control" %>
+        <%= f.label :description, class: "form-label " %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a category' }, { class: 'form-control' } %>
+        <%= f.label :Category, class: "form-label" %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-floating mb-3">
+      <%= f.file_field :image, class: 'form-control' %>
+        <%= f.label :image, class: "form-label" %>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
