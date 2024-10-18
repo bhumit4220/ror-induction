@@ -1,0 +1,23 @@
+@import 'bootstrap/dist/css/bootstrap';
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+.asterick label:after{
+  content:" *" !important;
+  color: red;
+}
+
+.container {
+  padding: 3rem;
+}
+
+.color-primary {
+  color: #74C0FC;
+}
+
+.color-view {
+  color: #edbd0c;
+}
+
+.color-danger {
+  color: #ea6657;
+}
