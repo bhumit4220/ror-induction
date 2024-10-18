@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: induction_training
+  pool: 5
+  username: postgres
+  password: postgres
