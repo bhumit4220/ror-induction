@@ -1,17 +1,19 @@
 class Book < ApplicationRecord
   belongs_to :category
+  belongs_to :author
   has_many :favorites, dependent: :destroy
   has_many :favorited_by, through: :favorites, source: :user
   has_one_attached :image
+  validates :name, uniqueness: true
 
   default_scope { order(:id) } 
-  PERMITTED_PARAMS = [:name, :author_name, :description, :category_id, :image]
+  PERMITTED_PARAMS = [:name, :author_id, :description, :category_id, :image]
 
   def self.search_books(search)
-    joins(:category).where('books.name ILIKE :search OR books.description ILIKE :search OR books.author_name ILIKE :search OR categories.name ILIKE :search', search: "%#{search}%").distinct
+    Book.joins(:category, :author).where('books.name ILIKE :search OR books.description ILIKE :search OR categories.name ILIKE :search OR authors.name ILIKE :search', search: "%#{search}%").distinct
   end
 
   def display_image
-    image.variant(resize: "100x100").processed if image.attached?
+    image.variant(resize: "50x50").processed if image.attached?
   end
 end
