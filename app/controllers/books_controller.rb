@@ -24,7 +24,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+      redirect_to books_url, notice: 'Book was successfully created.'
     else
       render :new
     end
@@ -36,7 +36,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to @book, notice: 'Book was successfully updated.'
+      redirect_to books_url, notice: 'Book was successfully updated.'
     else
       render :edit
     end
@@ -63,11 +63,7 @@ class BooksController < ApplicationController
   end
 
   def report
-    @favorite_books = Book.unscoped
-      .select('books.*, COUNT(favorites.id) AS favorites_count')
-      .left_joins(:favorites)
-      .group('books.id')
-      .order('favorites_count DESC')
+    @favorite_books = Book.unscoped.select('books.*, COUNT(favorites.id) AS favorites_count').left_joins(:favorites).group('books.id').order('favorites_count DESC')
   end
 
   private
@@ -77,6 +73,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:name, :author_name, :description, :category_id, :image)
+    params.require(:book).permit(Book::PERMITTED_PARAMS)
   end
 end
