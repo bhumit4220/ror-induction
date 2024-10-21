@@ -26,6 +26,10 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'cancancan', '~> 1.10'
 gem 'rolify'
+gem 'mini_magick'
+gem 'swagger-docs'
+gem 'active_model_serializers'
+gem 'jwt'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
