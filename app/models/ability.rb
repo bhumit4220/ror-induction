@@ -4,6 +4,7 @@ class Ability
     return unless user.present?
     if user.admin?
       can :manage, Book
+      can :manage, Author
     else
       can :read, Book
       can :favorite, Book
