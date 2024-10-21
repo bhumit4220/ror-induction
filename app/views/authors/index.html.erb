@@ -1,0 +1,20 @@
+<h1 class="my-4 text-center">Authors</h1>
+<div class="container">
+  <div class="text-right text-end mb-3">
+    <% if can? :add, Author %>
+      <%= link_to 'New Author', new_author_path, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody id="authors-table-tbody">
+      <%= render partial: "authors/authors_list", locals: { authors: @authors } %>
+    </tbody>
+  </table>  
+</div>
+
+
