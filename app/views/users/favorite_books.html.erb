@@ -1,0 +1,17 @@
+<h1 class="my-4 text-center">Favorite Books</h1>
+<div class="container">
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Book cover</th>
+        <th>Author Name</th>
+        <th>Description</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody id="books-table-tbody">
+      <%= render partial: "books/books_list", locals: { books: @books } %>
+    </tbody>
+  </table>  
+</div>
