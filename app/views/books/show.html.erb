@@ -1,17 +1,23 @@
 <div class="container mt-4">
   <h1 class="text-center"><%= @book.name %></h1>
-
-  <div class="card mb-4">
-    <div class="card-body">
-      <p class="card-text">
-        <strong>Author Name:</strong> <%= @book.author_name %>
-      </p>
-      <p class="card-text">
-        <strong>Description:</strong> <%= @book.description %>
-      </p>
-      <p class="card-text">
-        <strong>Category:</strong> <%= @book.category&.name || 'Uncategorized' %>
-      </p>
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mx-auto mb-3">
+      <div class="card" style="width: 28rem;">
+        <% if @book.image.attached? %>
+          <%= image_tag @book.image, class: "card-img-top", alt: @book.name %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-text">
+            <strong>Author Name:</strong> <%= @book.author&.name %>
+          </p>
+          <p class="card-text">
+            <strong>Description:</strong> <%= @book.description %>
+          </p>
+          <p class="card-text">
+            <strong>Category:</strong> <%= @book.category&.name || 'Uncategorized' %>
+          </p>  
+        </div>
+      </div>
     </div>
   </div>
 
