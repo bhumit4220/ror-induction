@@ -1,0 +1,14 @@
+<% if @users.present? %>  
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.full_name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.user_roles %></td>
+      <td><%= user.created_at %></td>
+    </tr>
+  <% end %>
+<% else %>
+    <tr>
+      <td colspan="4">No records found.</td>
+    </tr>
+<% end %>
