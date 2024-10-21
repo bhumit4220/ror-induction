@@ -6,6 +6,7 @@ class Ability
       can :manage, Book
     else
       can :read, Book
+      can :favorite, Book
     end
   end
 
