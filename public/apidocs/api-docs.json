@@ -1,0 +1,169 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "swagger": "2.0",
+  "openApi": "3.0.0",
+  "basePath": "/api/v1",
+  "authorizations": null,
+  "info": {
+    "title": "Training",
+    "description": "",
+    "termsOfServiceUrl": "http://helloreverb.com/terms/",
+    "contact": "apiteam@wordnik.com",
+    "license": "Apache 2.0",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.html"
+  },
+
+  "securityDefinitions": {
+    "verify_auth_token": {
+      "type": "apiKey",
+      "name": "TOKEN",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "Register"
+        ],
+        "summary": "Registration API.",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "query",
+            "name": "user[first_name]",
+            "description": "First Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "user[last_name]",
+            "description": "Last Name",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "user[email]",
+            "description": "User's Email id.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "user[password]",
+            "description": "Encrypted User Password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/log_in": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "LogIn API.",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "query",
+            "name": "email",
+            "description": "User's Email id.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "password",
+            "description": "Encrypted User Password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/log_out": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Logout API",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "in": "query",
+          "name": "email",
+          "description": "User's Email id.",
+          "required": true,
+          "type": "string"
+        }],
+        "security": [{
+          "verify_auth_token": [
+            "write:employees",
+            "read:employees"
+          ]
+        }],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Users list.",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "security": [{
+          "verify_auth_token": [
+            "write:users",
+            "read:users"
+          ]
+        }],
+        "responses": {
+          "200": {
+            "description": "fetched"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+
+  }
+}
