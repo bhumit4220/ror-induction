@@ -48,7 +48,7 @@
     });
   });
 
-  $(document).on("click", ".fa-star", function(){
+  $(document).off("click", ".fa-star").on("click", ".fa-star", function(){
     let star = $(this)
     let id = $(this)[0].dataset['id']
     let type = $(this)[0].dataset['type']
