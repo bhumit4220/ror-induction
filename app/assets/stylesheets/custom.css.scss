@@ -1,7 +1,7 @@
 @import 'bootstrap/dist/css/bootstrap';
 @import "@fortawesome/fontawesome-free/css/all.css";
 
-.asterick label:after{
+.asterick label::after{
   content:" *" !important;
   color: red;
 }
@@ -20,4 +20,37 @@
 
 .color-danger {
   color: #ea6657;
+}
+
+.color-favorite {
+  color: #B197FC;
+}
+
+.flash-messages {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  z-index: 1050;
+  text-align: center;
+}
+
+.alert {
+  margin-top: 10px;
+  display: inline-block;
+  width: auto;
+  opacity: 0.95;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.active {
+  color: blue;
+}
+
+.none-decoration {
+  text-decoration: none !important
 }
