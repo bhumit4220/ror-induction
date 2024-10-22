@@ -1,0 +1,63 @@
+<div class="chat-container">
+  <div class="contact-list">
+    <h5 class="p-3">Contacts</h5>
+    <% @users.each do |user| %>
+      <%= link_to conversation_path(user.id), class: "none-decoration text-black" do %>
+        <div class="contact-item d-flex justify-content-between <%= user == @receiver ? "active-user" : "" %>">
+          <%= user.full_name %>
+            <span id="user_<%= user.id %>" class="badge mt-1 <%= user.online ? "badge-success" : "" %>">&nbsp;</span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="chat-area">
+    <div class="chat-header">
+      <h5><%= @receiver.full_name %></h5>
+    </div>
+    <div id="messages" class="messages">
+      <% @messages.each do |message| %>
+        <div class="message <%= get_message_class(message, @sender, @receiver) %>" data-id="<%= message.id %>">
+          <p><%= message.message %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="input-group">
+      <input type="text" class="form-control" id="message_input" placeholder="Type a message..." aria-label="User's message">
+      <div class="input-group-append">
+        <button class="btn btn-primary" id="send_message" type="button"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    const senderId = <%= @sender.id %>
+    const receiverId = <%= @receiver.id %>
+    const chatChannel = window.createChatChannel(senderId, receiverId)
+
+    const input = document.getElementById("message_input");
+    function sendMessage() {
+      const message = input.value;
+      if (message) {
+        chatChannel.speak(message);
+        input.value = ""; 
+      }
+    }
+
+    document.getElementById("send_message").addEventListener("click", sendMessage);
+
+    input.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();  
+      }
+    });
+
+    window.addEventListener("beforeunload", () => {
+      if (chatChannel) chatChannel.unsubscribe();
+    });
+
+  });
+</script>

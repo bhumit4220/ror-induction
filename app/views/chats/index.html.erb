@@ -1,0 +1,27 @@
+<div class="chat-container">
+  <div class="contact-list">
+    <h5 class="p-3">Contacts</h5>
+    <% @users.each do |user| %>
+      <%= link_to conversation_path(user.id), class: "none-decoration text-black" do %>
+        <div class="contact-item d-flex justify-content-between <%= user == @receiver ? "active-user" : "" %>">
+          <%= user.full_name %>
+            <span id="user_<%= user.id %>" class="badge mt-1 <%= user.online ? "badge-success" : "" %>">&nbsp;</span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="chat-area">
+    <div class="messages d-flex justify-content-center align-items-center">
+      Select any contacts for start chat.
+    </div>
+
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Type a message..." aria-label="User's message">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+

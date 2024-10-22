@@ -27,6 +27,9 @@
           <li class="nav-item">
             <%= link_to "Favorite Books", favorite_books_user_path(current_user), class: "nav-link #{active_action_class(params[:action], "favorite_books")}" %>
           </li>
+          <li class="nav-item">
+            <%= link_to "Chats", chats_path, class: "nav-link #{active_class(params[:controller], "chats", params[:action])}" %>
+          </li>
         <% end %> 
       </ul>
       <% if user_signed_in? %>

@@ -34,4 +34,8 @@ module ApplicationHelper
   def button_text(action)
     action == "new" ? "Create" : "Update"
   end
+
+  def get_message_class(message, sender, receiver)
+    message.sender_id == sender.id ? 'sent ' : 'received'
+  end
 end
