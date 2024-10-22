@@ -30,4 +30,8 @@ module ApplicationHelper
   end
 
   EXCLUDED_ACTIONS = ["report", "favorite_books"]
+
+  def button_text(action)
+    action == "new" ? "Create" : "Update"
+  end
 end

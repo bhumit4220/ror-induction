@@ -5,6 +5,7 @@ class Ability
     if user.admin?
       can :manage, Book
       can :manage, Author
+      can :manage, Category
     else
       can :read, Book
       can :favorite, Book
