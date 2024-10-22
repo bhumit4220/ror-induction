@@ -17,68 +17,6 @@
     </tbody>
   </table>  
 </div>
-<div class="container d-flex justify-content-center">
-  <canvas id="favoritesChart" style="max-width: 500px; max-height: 500px;" width="500" height="500"></canvas>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  let favoritesChart;
+<%= pie_chart  @favorite_books.map { |book| [book.name, book.favorites_count] } %>
 
-  function createFavoritesChart() {
-    const ctx = document.getElementById('favoritesChart').getContext('2d');
-
-    if (favoritesChart) {
-      favoritesChart.destroy();
-    }
-
-    const data = {
-      labels: <%= @favorite_books.map(&:name).to_json.html_safe %>,
-      datasets: [{
-        label: 'Number of Favorites',
-        data: <%= @favorite_books.map(&:favorites_count).to_json.html_safe %>,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 205, 86, 0.6)',
-          'rgba(201, 203, 207, 0.6)',
-          'rgba(255, 100, 200, 0.6)',
-          'rgba(0, 204, 204, 0.6)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 205, 86, 1)',
-          'rgba(201, 203, 207, 1)',
-          'rgba(255, 100, 200, 1)',
-          'rgba(0, 204, 204, 1)'
-        ],
-        borderWidth: 1
-      }]
-    };
-
-    favoritesChart = new Chart(ctx, {
-      type: 'pie',
-      data: data,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-        }
-      }
-    });
-  }
-
-  document.addEventListener('turbolinks:load', createFavoritesChart);
-  document.addEventListener('DOMContentLoaded', createFavoritesChart);
-</script>
 
