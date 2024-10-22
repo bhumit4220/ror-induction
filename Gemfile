@@ -30,6 +30,7 @@ gem 'mini_magick'
 gem 'swagger-docs'
 gem 'active_model_serializers'
 gem 'jwt'
+gem "chartkick"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

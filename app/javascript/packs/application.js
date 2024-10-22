@@ -10,7 +10,7 @@ require("channels")
 import 'bootstrap';
 import '@popperjs/core';
 import "@fortawesome/fontawesome-free/js/all";
-
+import "chartkick/chart.js"
 import $ from 'jquery';
 // Expose jQuery globally
 window.$ = $;
