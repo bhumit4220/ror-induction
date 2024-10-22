@@ -1,14 +1,7 @@
 <div class="chat-container">
   <div class="contact-list">
     <h5 class="p-3">Contacts</h5>
-    <% @users.each do |user| %>
-      <%= link_to conversation_path(user.id), class: "none-decoration text-black" do %>
-        <div class="contact-item d-flex justify-content-between <%= user == @receiver ? "active-user" : "" %>">
-          <%= user.full_name %>
-            <span id="user_<%= user.id %>" class="badge mt-1 <%= user.online ? "badge-success" : "" %>">&nbsp;</span>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render 'users_list', users: @users %>
   </div>
 
   <div class="chat-area">

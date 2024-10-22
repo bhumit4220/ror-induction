@@ -31,6 +31,7 @@ function createChatChannel(senderId, receiverId) {
           messagesContainer.insertAdjacentHTML('beforeend', data.message);
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
+        moveUserToTop(data.user_id);
       },
       speak(message) {
         this.perform("speak", {
@@ -41,6 +42,15 @@ function createChatChannel(senderId, receiverId) {
       }
     }
   )
+
+  function moveUserToTop(userId) {
+    const userElement = document.querySelector(`[data-user-id="${userId}"]`);
+    if (userElement) {
+      const parent = userElement.parentElement;
+      parent.prepend(userElement);
+    }
+  }
+
   chatChannels[channelKey] = newChannel;
   return newChannel;
 

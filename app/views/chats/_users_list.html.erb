@@ -1,0 +1,9 @@
+<% users.each do |user| %>
+  <%= link_to conversation_path(user.id), class: "none-decoration text-black", data: { user_id: user.id } do %>
+    <% unread_class = user["unread_count"].to_i > 0 ? "unread-message" : "" %>
+    <div class="contact-item d-flex justify-content-between <%= user == @receiver ? "active-user" : unread_class %>">
+      <%= user.full_name %>
+        <span id="user_<%= user.id %>" class="badge mt-1 <%= user.online ? "badge-success" : "" %>">&nbsp;</span>
+    </div>
+  <% end %>
+<% end %>
