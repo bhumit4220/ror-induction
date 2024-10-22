@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get :report
     end
   end
+  get 'chats', to: 'chats#index'
+  get '/conversation/:id', to: 'chats#conversation', as: 'conversation'
   get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
 
   namespace :api, defaults: { format: 'json' } do
