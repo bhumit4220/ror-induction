@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "books#index"
   devise_for :users
   resources :authors
+  resources :categories
   resources :users, only: [:index] do
     get :favorite_books, on: :member
   end
