@@ -1,0 +1,25 @@
+<%= form_with(model: category, local: true) do |f| %>
+  <div class="row gy-3 overflow-hidden">
+    <% if category.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <ul>
+          <% category.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <%= f.text_field :name, required: true, class: "form-control" %>
+        <%= f.label :name, class: "form-label" %>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit "#{button_text(params[:action])} Genres", class: 'btn btn-primary' %>
+      <%= link_to 'Back', categories_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>

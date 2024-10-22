@@ -17,6 +17,9 @@
             <%= link_to "Authors", authors_path, class: "nav-link #{active_class(params[:controller], "authors", params[:action])}" %>
           </li>
           <li class="nav-item">
+            <%= link_to "Genres", categories_path, class: "nav-link #{active_class(params[:controller], "categories", params[:action])}" %>
+          </li>
+          <li class="nav-item">
             <%= link_to "Report", report_books_path, class: "nav-link #{active_action_class(params[:action], "report")}" %>
           </li>
         <% end %>

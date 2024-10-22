@@ -1,0 +1,20 @@
+<h1 class="my-4 text-center">Genres</h1>
+<div class="container">
+  <div class="text-right text-end mb-3">
+    <% if can? :add, Category %>
+      <%= link_to 'New Genres', new_category_path, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody id="categories-table-tbody">
+      <%= render partial: "categories/categories_list", locals: { categories: @categories } %>
+    </tbody>
+  </table>  
+</div>
+
+
