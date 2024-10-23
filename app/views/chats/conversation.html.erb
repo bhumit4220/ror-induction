@@ -1,7 +1,9 @@
 <div class="chat-container">
   <div class="contact-list">
     <h5 class="p-3">Contacts</h5>
-    <%= render 'users_list', users: @users %>
+    <div class="users-list">
+      <%= render 'users_list', users: @users %>
+    </div>
   </div>
 
   <div class="chat-area">
@@ -10,8 +12,19 @@
     </div>
     <div id="messages" class="messages">
       <% @messages.each do |message| %>
-        <div class="message <%= get_message_class(message, @sender, @receiver) %>" data-id="<%= message.id %>">
+        <% klass = get_message_class(message, @sender, @receiver) %>
+        <div class="message <%= klass %>" data-id="<%= message.id %>">
+          <% if klass == "sent" %>
+            <span class="message-time">
+              <%= message.created_at.strftime("%I:%M %p") %>
+            </span>
+          <% end %>
           <p><%= message.message %></p>
+          <% if klass == "received" %>
+            <span class="message-time">
+              <%= message.created_at.strftime("%I:%M %p") %>
+            </span>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -34,6 +47,10 @@
     function sendMessage() {
       const message = input.value;
       if (message) {
+        const userElement = document.querySelector(`[data-user-id="${receiverId}"]`);
+        const childElement = userElement.children[0];
+        childElement.classList.remove("unread-message");
+        childElement.classList.add("active-user");
         chatChannel.speak(message);
         input.value = ""; 
       }

@@ -1,3 +1,13 @@
 <div class="message <%= user_type == "sender" ? 'sent' : 'received' %>" data-id="<%= message.id %>">
+  <% if user_type == "sender" %>
+    <span class="message-time">
+      <%= message.created_at.strftime("%I:%M %p") %>
+    </span>
+  <% end %>
   <p><%= message.message %></p>
+  <% if user_type == "receiver" %>
+    <span class="message-time">
+      <%= message.created_at.strftime("%I:%M %p") %>
+    </span>
+  <% end %>
 </div>
