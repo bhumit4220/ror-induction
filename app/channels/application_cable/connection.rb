@@ -2,12 +2,9 @@
   class Connection < ActionCable::Connection::Base
     identified_by :current_user
     def connect
-      self.current_user = find_verified_user
-      current_user.update(online: true) if current_user
     end
   
     def disconnect
-      current_user.update(online: false) if current_user
     end
   
     private

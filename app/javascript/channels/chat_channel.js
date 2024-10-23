@@ -25,13 +25,14 @@ function createChatChannel(senderId, receiverId) {
       received(data) {
         const messagesContainer = document.getElementById('messages');
         const messageId = data.message.id;
-        const lastMessage = messagesContainer.lastElementChild;
-
-        if (!lastMessage || lastMessage.dataset.id !== data.message_id) {
-          messagesContainer.insertAdjacentHTML('beforeend', data.message);
-          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        if (messagesContainer) {  
+          const lastMessage = messagesContainer.lastElementChild;
+          if (!lastMessage || lastMessage.dataset.id !== data.message_id) {
+            messagesContainer.insertAdjacentHTML('beforeend', data.message);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+          moveUserToTop(data.user_id, data.top);
         }
-        moveUserToTop(data.user_id);
       },
       speak(message) {
         this.perform("speak", {
@@ -43,9 +44,14 @@ function createChatChannel(senderId, receiverId) {
     }
   )
 
-  function moveUserToTop(userId) {
+  function moveUserToTop(userId, top) {
     const userElement = document.querySelector(`[data-user-id="${userId}"]`);
     if (userElement) {
+      if (top) {
+        const childElement = userElement.children[0];
+        childElement.classList.remove("active-user");
+        childElement.classList.add("unread-message");
+      }
       const parent = userElement.parentElement;
       parent.prepend(userElement);
     }
