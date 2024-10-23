@@ -16,13 +16,13 @@
         <div class="message <%= klass %>" data-id="<%= message.id %>">
           <% if klass == "sent" %>
             <span class="message-time">
-              <%= message.created_at.strftime("%I:%M %p") %>
+              <%= message.created_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %>
             </span>
           <% end %>
           <p><%= message.message %></p>
           <% if klass == "received" %>
             <span class="message-time">
-              <%= message.created_at.strftime("%I:%M %p") %>
+              <%= message.created_at.in_time_zone('Asia/Kolkata').strftime("%I:%M %p") %>
             </span>
           <% end %>
         </div>

@@ -4,7 +4,7 @@
       <td><%= user.full_name %></td>
       <td><%= user.email %></td>
       <td><%= user.user_roles %></td>
-      <td><%= user.created_at %></td>
+      <td><%= user.created_at.in_time_zone('Asia/Kolkata') %></td>
     </tr>
   <% end %>
 <% else %>
