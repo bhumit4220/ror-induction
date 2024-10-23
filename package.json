@@ -1,4 +1,4 @@
-{
+  {
   "name": "ror_induction_training",
   "private": true,
   "dependencies": {
@@ -12,6 +12,7 @@
     "chart.js": "^4.4.5",
     "chartkick": "^5.0.1",
     "jquery": "^3.7.1",
+    "parsleyjs": "^2.9.2",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0"
   },

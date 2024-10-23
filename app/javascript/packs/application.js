@@ -12,6 +12,19 @@ import '@popperjs/core';
 import "@fortawesome/fontawesome-free/js/all";
 import "chartkick/chart.js"
 import $ from 'jquery';
+import 'parsleyjs';
 // Expose jQuery globally
 window.$ = $;
 window.jQuery = $;
+
+// Add this to your application.js after Parsley initialization
+document.addEventListener("turbolinks:load", function() {
+  $('form[data-parsley-validate]').on('submit', function(e) {
+    const form = $(this);
+    if (!form.parsley().isValid()) {
+      e.preventDefault();
+      return false;
+    }
+  });
+});
+
