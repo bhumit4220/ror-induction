@@ -36,6 +36,6 @@ module ApplicationHelper
   end
 
   def get_message_class(message, sender, receiver)
-    message.sender_id == sender.id ? 'sent ' : 'received'
+    message.sender_id == sender.id ? 'sent' : 'received'
   end
 end
