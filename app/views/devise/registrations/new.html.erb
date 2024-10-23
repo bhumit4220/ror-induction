@@ -11,12 +11,12 @@
                 </div>
               </div>
             </div>
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'parsley-form', novalidate: true, data: { parsley_validate: true } }) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
               <div class="row gy-3 overflow-hidden">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <%= f.text_field :first_name, required: true, class: "form-control" %>
+                    <%= f.text_field :first_name, required: true, class: "form-control", data: { parsley_required_message: 'Please enter your first name', parsley_trigger: 'change keyup' } %>
                     <%= f.label :first_name, class: "form-label" %>
                   </div>
                 </div>
@@ -28,19 +28,19 @@
                 </div>
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control", data: { parsley_type: 'email', parsley_type_message: 'Please enter a valid email address', parsley_required_message: 'Please enter your email', parsley_trigger: 'change keyup' } %>
                     <%= f.label :email, class: "form-label" %>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true, class: "form-control" %>
+                    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true, class: "form-control", data: { parsley_required_message: 'Please enter your password', parsley_minlength: 6, parsley_minlength_message: 'Your password must be at least 6 characters', parsley_trigger: 'change keyup' } %>
                     <%= f.label :password, class: "form-label" %>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", required: true, class: "form-control" %>
+                    <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", required: true, class: "form-control", data: { parsley_required_message: 'Please enter your password', parsley_minlength: 6, parsley_minlength_message: 'Your password must be at least 6 characters', parsley_trigger: 'change keyup', parsley_equalto: '#user_password', parsley_equalto_message: 'Passwords and confirmation must match' } %>
                     <%= f.label :password_confirmation, class: "form-label" %>
                   </div>
                 </div>

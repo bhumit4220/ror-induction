@@ -1,8 +1,10 @@
 <div class="chat-container">
   <div class="contact-list">
     <h5 class="p-3">Contacts</h5>
-    <%= render 'users_list', users: @users %>
+    <div class="users-list">
+      <%= render 'users_list', users: @users %>
   </div>
+</div>
 
   <div class="chat-area">
     <div class="messages d-flex justify-content-center align-items-center">

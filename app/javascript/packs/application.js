@@ -17,14 +17,34 @@ import 'parsleyjs';
 window.$ = $;
 window.jQuery = $;
 
-// Add this to your application.js after Parsley initialization
-document.addEventListener("turbolinks:load", function() {
-  $('form[data-parsley-validate]').on('submit', function(e) {
-    const form = $(this);
-    if (!form.parsley().isValid()) {
-      e.preventDefault();
-      return false;
+const initializeParsleyForms = () => {
+  $('.parsley-form').each(function() {
+    if ($(this).data('Parsley')) {
+      $(this).parsley().destroy();
     }
+    
+    $(this).parsley({
+      errorClass: 'is-invalid',
+      successClass: 'is-valid',
+      errorsWrapper: '<div class="invalid-feedback"></div>',
+      errorTemplate: '<span></span>',
+      trigger: 'change'
+    });
   });
+}
+
+$(document).ready(initializeParsleyForms);
+document.addEventListener("turbolinks:load", initializeParsleyForms);
+
+$(document).on('submit', '.parsley-form', function(e) {
+  const form = $(this);
+  if (!form.parsley().isValid()) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
 });
 
+$(document).on('keyup', '.parsley-form input', function() {
+  $(this).parsley().validate();
+});
