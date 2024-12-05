@@ -1,0 +1,21 @@
+<%= form_with model: @csv_upload, local: true, html: { enctype: "multipart/form-data" } do |form| %>
+  <% if @csv_upload.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@csv_upload.errors.count, "error") %> prohibited this CSV file from being saved:</h2>
+      <ul>
+        <% @csv_upload.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :file, "Upload CSV File" %>
+    <%= form.file_field :file, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Upload CSV" %>
+  </div>
+<% end %>

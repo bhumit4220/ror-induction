@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
+  post "/graphql", to: "graphql#execute"
   root "books#index"
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
+  resources :csv_uploads
   resources :authors
   resources :categories
   resources :users, only: [:index] do
